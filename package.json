@@ -12,6 +12,8 @@
     "check-types": "NODE_OPTIONS=--max-old-space-size=8192 tsc --noEmit --pretty"
   },
   "dependencies": {
+    "antd": "^5.24.6",
+    "lucide-react": "^0.487.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
