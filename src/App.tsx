@@ -1,5 +1,4 @@
 import '@/index.css';
 
-export const App = () => <></>;
-
+const App = () => <div>App</div>;
 export default App;

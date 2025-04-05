@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prepare": "husky",
+    "check-types": "NODE_OPTIONS=--max-old-space-size=8192 tsc --noEmit --pretty"
   },
   "dependencies": {
     "react": "^19.0.0",
@@ -32,6 +34,7 @@
     "eslint-plugin-react-refresh": "0.4.19",
     "eslint-plugin-unused-imports": "4.1.4",
     "globals": "15.15.0",
+    "husky": "^9.1.7",
     "lint-staged": "^15.5.0",
     "postcss-nesting": "^13.0.1",
     "prettier": "3.5.3",
