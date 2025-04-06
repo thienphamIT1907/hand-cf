@@ -4,12 +4,15 @@ import './index.css';
 import AntdProvider from '@/providers/AntdProvider';
 import { AuthProvider } from '@/providers/Auth';
 import App from '@/App';
+import TanstackQueryProvider from '@/providers/TanstackQuery';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <AuthProvider>
       <AntdProvider>
-        <App />
+        <TanstackQueryProvider>
+          <App />
+        </TanstackQueryProvider>
       </AntdProvider>
     </AuthProvider>
   </StrictMode>,

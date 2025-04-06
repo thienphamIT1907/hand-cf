@@ -5,13 +5,33 @@ import tailwindcss from 'tailwindcss';
 import postcssNesting from 'postcss-nesting';
 import { resolve } from 'path';
 import { TanStackRouterVite } from '@tanstack/router-plugin/vite';
+import AutoImport from 'unplugin-auto-import/vite';
 
 export default defineConfig({
   plugins: [
-    TanStackRouterVite({ target: 'react', autoCodeSplitting: true }),
+    TanStackRouterVite({ target: 'react', autoCodeSplitting: false }),
     react(),
     viteTsconfigPaths(),
+    AutoImport({
+      dts: './src/@types/auto-imports.d.ts',
+      imports: [
+        'react',
+        {
+          '@tanstack/react-router': ['useRouter', 'useMatch', 'Link', 'Outlet'],
+        },
+      ],
+      eslintrc: {
+        enabled: true,
+      },
+    }),
   ],
+  optimizeDeps: {
+    esbuildOptions: {
+      define: {
+        global: 'globalThis',
+      },
+    },
+  },
 
   css: {
     preprocessorOptions: {
