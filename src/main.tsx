@@ -1,13 +1,16 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.css';
-import App from '@/App';
 import AntdProvider from '@/providers/AntdProvider';
+import { AuthProvider } from '@/providers/Auth';
+import App from '@/App';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <AntdProvider>
-      <App />
-    </AntdProvider>
+    <AuthProvider>
+      <AntdProvider>
+        <App />
+      </AntdProvider>
+    </AuthProvider>
   </StrictMode>,
 );

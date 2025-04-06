@@ -4,9 +4,11 @@ import viteTsconfigPaths from 'vite-tsconfig-paths';
 import tailwindcss from 'tailwindcss';
 import postcssNesting from 'postcss-nesting';
 import { resolve } from 'path';
+import { TanStackRouterVite } from '@tanstack/router-plugin/vite';
 
 export default defineConfig({
   plugins: [
+    TanStackRouterVite({ target: 'react', autoCodeSplitting: true }),
     react(),
     viteTsconfigPaths(),
   ],
@@ -15,7 +17,6 @@ export default defineConfig({
     preprocessorOptions: {
       less: {
         math: 'always',
-        relativeUrls: true,
         javascriptEnabled: true,
       },
     },

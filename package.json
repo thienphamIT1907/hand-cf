@@ -12,16 +12,19 @@
     "check-types": "NODE_OPTIONS=--max-old-space-size=8192 tsc --noEmit --pretty"
   },
   "dependencies": {
+    "@tanstack/react-router": "^1.114.34",
     "antd": "^5.24.6",
     "lucide-react": "^0.487.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
     "@eslint/compat": "^1.2.8",
     "@eslint/js": "^9.21.0",
-    "@types/react": "^19.0.10",
-    "@types/react-dom": "^19.0.4",
+    "@tanstack/react-router-devtools": "^1.114.34",
+    "@tanstack/router-plugin": "^1.114.34",
+    "@types/react": "18.3.1",
+    "@types/react-dom": "18.3.1",
     "@typescript-eslint/parser": "^8.29.0",
     "@vitejs/plugin-react-swc": "^3.8.0",
     "eslint": "^9.24.0",
