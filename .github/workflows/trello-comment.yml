@@ -1,0 +1,45 @@
+name: Comment PR to Trello by Prefix
+
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  comment-to-trello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Extract Trello Card Prefix (e.g. [HAND-100])
+        id: extract
+        run: |
+          PREFIX=$(echo "${{ github.event.pull_request.title }}" | grep -oE '\[HAND-[0-9]+\]')
+          
+          if [ -z "$PREFIX" ]; then
+            echo "No Trello card prefix found."
+            exit 0
+          fi
+          
+          echo "prefix=$PREFIX" >> $GITHUB_OUTPUT
+
+      - name: Search Trello Card by Title
+        id: findcard
+        if: steps.extract.outputs.prefix != ''
+        run: |
+          QUERY=${{ steps.extract.outputs.prefix }}
+          RESPONSE=$(curl -s "https://api.trello.com/1/search?key=${{ secrets.TRELLO_API_KEY }}&token=${{ secrets.TRELLO_TOKEN }}&query=$QUERY&modelTypes=cards&cards_limit=1")
+
+          CARD_ID=$(echo "$RESPONSE" | grep -oP '"id":"\K[0-9a-f]{24}' | head -n1)
+
+          if [ -z "$CARD_ID" ]; then
+            echo "No matching Trello card found for prefix $QUERY"
+            exit 0
+          fi
+
+          echo "card_id=$CARD_ID" >> $GITHUB_OUTPUT
+
+      - name: Comment on Trello Card
+        if: steps.findcard.outputs.card_id != ''
+        run: |
+          curl -X POST "https://api.trello.com/1/cards/${{ steps.findcard.outputs.card_id }}/actions/comments" \
+          -d "key=${{ secrets.TRELLO_API_KEY }}" \
+          -d "token=${{ secrets.TRELLO_TOKEN }}" \
+          -d "text=📝 GitHub PR [#${{ github.event.pull_request.number }}](${{ github.event.pull_request.html_url }}) created: ${{ github.event.pull_request.title }}"
