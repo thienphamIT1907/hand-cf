@@ -14,7 +14,7 @@ export const designTokens = {
     default: 7,
   },
   typography: {
-    fontFamily: 'Nunito',
+    fontFamily: 'Montserrat',
     fontSize: {
       base: '16px',
       small: '12px',

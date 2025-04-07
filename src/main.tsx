@@ -9,11 +9,11 @@ import TanstackQueryProvider from '@/providers/TanstackQuery';
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <AuthProvider>
-      <AntdProvider>
-        <TanstackQueryProvider>
+      <TanstackQueryProvider>
+        <AntdProvider>
           <App />
-        </TanstackQueryProvider>
-      </AntdProvider>
+        </AntdProvider>
+      </TanstackQueryProvider>
     </AuthProvider>
   </StrictMode>,
 );

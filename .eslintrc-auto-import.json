@@ -19,10 +19,6 @@
     "useRef": true,
     "useState": true,
     "useSyncExternalStore": true,
-    "useTransition": true,
-    "Link": true,
-    "Outlet": true,
-    "useMatch": true,
-    "useRouter": true
+    "useTransition": true
   }
 }

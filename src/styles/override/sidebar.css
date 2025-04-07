@@ -1,0 +1,132 @@
+.logo {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 24px;
+  margin-bottom: 16px;
+}
+
+.logo-full {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.logo-purr {
+  color: #ff9966;
+}
+
+.logo-short {
+  font-size: 24px;
+  font-weight: 600;
+  color: #ff9966;
+}
+
+.collapse-button {
+  /* position: absolute;
+  top: 12px;
+  right: -10px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  z-index: 10; */
+}
+
+.collapse-button:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.sidebar-menu {
+  border-right: none !important;
+}
+
+.ant-menu-item-selected {
+  background-color: #fff3e0 !important;
+  color: #ff9966 !important;
+}
+
+.ant-menu-item-selected .ant-menu-item-icon {
+  color: #ff9966 !important;
+}
+
+.ant-menu-item:hover {
+  color: #ff9966 !important;
+}
+
+.ant-menu-item:hover .ant-menu-item-icon {
+  color: #ff9966 !important;
+}
+
+.menu-item-with-badge {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.custom-badge .ant-badge-count {
+  background-color: #ff9966;
+  box-shadow: none;
+}
+
+.donate-icon {
+  color: #ff9966;
+  background-color: rgba(255, 153, 102, 0.1);
+  padding: 4px;
+  border-radius: 50%;
+}
+
+.logout-container {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  width: 100%;
+  transition: all 0.3s;
+}
+
+.logout-container.collapsed {
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.logout-button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  padding: 12px;
+  border-radius: 8px;
+  transition: all 0.3s;
+}
+
+.logout-button:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Divider styling */
+.ant-menu-item-divider {
+  margin: 16px 0 !important;
+  background-color: #f0f0f0 !important;
+}
+
+/* Submenu styling */
+.ant-menu-submenu-title:hover {
+  color: #ff9966 !important;
+}
+
+.ant-menu-submenu-title:hover .ant-menu-item-icon {
+  color: #ff9966 !important;
+}
+
+.ant-menu-submenu-selected .ant-menu-submenu-title {
+  color: #ff9966 !important;
+}
+
+.ant-menu-submenu-selected .ant-menu-submenu-title .ant-menu-item-icon {
+  color: #ff9966 !important;
+}

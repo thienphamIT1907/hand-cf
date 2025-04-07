@@ -1,10 +1,13 @@
 // src/routes/_authenticated/index.tsx
 import { createFileRoute } from '@tanstack/react-router';
+import { Typography } from 'antd';
+
+const { Text } = Typography;
 
 const Home = () => (
   <div>
-    <h1>Home Page</h1>
-    <p>Welcome to the home page!</p>
+    <Text>Home Page</Text>
+    <Text>Welcome to the home page!</Text>
   </div>
 );
 

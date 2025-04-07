@@ -14,12 +14,7 @@ export default defineConfig({
     viteTsconfigPaths(),
     AutoImport({
       dts: './src/@types/auto-imports.d.ts',
-      imports: [
-        'react',
-        {
-          '@tanstack/react-router': ['useRouter', 'useMatch', 'Link', 'Outlet'],
-        },
-      ],
+      imports: ['react'],
       eslintrc: {
         enabled: true,
       },

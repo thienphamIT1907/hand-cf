@@ -1,27 +1,18 @@
-import { useAuth } from '@/shared/hooks';
-import { Link, Outlet } from '@tanstack/react-router';
-import { Button } from 'antd';
+import SidebarProvider from '@/providers/SidebarProvider';
+import Header from '@/shared/components/Header';
+import SideBar from '@/shared/components/Sidebar';
+import { Outlet } from '@tanstack/react-router';
 
-export const PrivateLayout = () => {
-  const { logout } = useAuth();
-
-  return (
-    <div>
-      <header>
-        <nav>
-          <Link to="/" className="[&.active]:font-bold">
-            Home
-          </Link>{' '}
-          <Link to="/about" className="[&.active]:font-bold">
-            About
-          </Link>{' '}
-          <Link to="/products" className="[&.active]:font-bold">
-            Products
-          </Link>{' '}
-          <Button onClick={logout}>Logout</Button>
-        </nav>
-      </header>
-      <Outlet />
-    </div>
-  );
-};
+export const PrivateLayout = () => (
+  <SidebarProvider>
+    <main className="flex bg-gray-100">
+      <SideBar />
+      <div className="flex h-screen w-full flex-col gap-4 overflow-hidden overflow-y-auto rounded-xl p-3">
+        <Header />
+        <div className="scrollbar-gutter size-full overflow-y-auto rounded-lg bg-white p-6 shadow-sm">
+          <Outlet />
+        </div>
+      </div>
+    </main>
+  </SidebarProvider>
+);

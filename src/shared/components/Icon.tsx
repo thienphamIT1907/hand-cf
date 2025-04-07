@@ -4,13 +4,14 @@ type Props = {
   name: keyof typeof LucideIcons;
   size?: number;
   color?: string;
+  className?: string;
 };
 
-const Icon = ({ name, size, color, ...props }: Props) => {
-  const LucideIcon = LucideIcons[name] as React.ElementType | undefined;
+const Icon = ({ name, size, color, className, ...props }: Props) => {
+  const LucideIcon = LucideIcons[name] as React.ElementType;
 
   return LucideIcon ? (
-    <LucideIcon size={size} color={color} {...props} />
+    <LucideIcon size={size} color={color} className={className} {...props} />
   ) : null;
 };
 export default Icon;

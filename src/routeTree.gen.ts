@@ -14,8 +14,9 @@ import { Route as rootRoute } from './routes/__root'
 import { Route as LoginImport } from './routes/login'
 import { Route as AuthenticatedImport } from './routes/_authenticated'
 import { Route as AuthenticatedIndexImport } from './routes/_authenticated/index'
-import { Route as AuthenticatedProductsImport } from './routes/_authenticated/products'
-import { Route as AuthenticatedAboutImport } from './routes/_authenticated/about'
+import { Route as AuthenticatedMyOrdersIndexImport } from './routes/_authenticated/my-orders/index'
+import { Route as AuthenticatedMenuDishesImport } from './routes/_authenticated/menu/dishes'
+import { Route as AuthenticatedMenuCategoriesImport } from './routes/_authenticated/menu/categories'
 
 // Create/Update Routes
 
@@ -36,17 +37,26 @@ const AuthenticatedIndexRoute = AuthenticatedIndexImport.update({
   getParentRoute: () => AuthenticatedRoute,
 } as any)
 
-const AuthenticatedProductsRoute = AuthenticatedProductsImport.update({
-  id: '/products',
-  path: '/products',
+const AuthenticatedMyOrdersIndexRoute = AuthenticatedMyOrdersIndexImport.update(
+  {
+    id: '/my-orders/',
+    path: '/my-orders/',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any,
+)
+
+const AuthenticatedMenuDishesRoute = AuthenticatedMenuDishesImport.update({
+  id: '/menu/dishes',
+  path: '/menu/dishes',
   getParentRoute: () => AuthenticatedRoute,
 } as any)
 
-const AuthenticatedAboutRoute = AuthenticatedAboutImport.update({
-  id: '/about',
-  path: '/about',
-  getParentRoute: () => AuthenticatedRoute,
-} as any)
+const AuthenticatedMenuCategoriesRoute =
+  AuthenticatedMenuCategoriesImport.update({
+    id: '/menu/categories',
+    path: '/menu/categories',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
 
 // Populate the FileRoutesByPath interface
 
@@ -66,25 +76,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginImport
       parentRoute: typeof rootRoute
     }
-    '/_authenticated/about': {
-      id: '/_authenticated/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AuthenticatedAboutImport
-      parentRoute: typeof AuthenticatedImport
-    }
-    '/_authenticated/products': {
-      id: '/_authenticated/products'
-      path: '/products'
-      fullPath: '/products'
-      preLoaderRoute: typeof AuthenticatedProductsImport
-      parentRoute: typeof AuthenticatedImport
-    }
     '/_authenticated/': {
       id: '/_authenticated/'
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof AuthenticatedIndexImport
+      parentRoute: typeof AuthenticatedImport
+    }
+    '/_authenticated/menu/categories': {
+      id: '/_authenticated/menu/categories'
+      path: '/menu/categories'
+      fullPath: '/menu/categories'
+      preLoaderRoute: typeof AuthenticatedMenuCategoriesImport
+      parentRoute: typeof AuthenticatedImport
+    }
+    '/_authenticated/menu/dishes': {
+      id: '/_authenticated/menu/dishes'
+      path: '/menu/dishes'
+      fullPath: '/menu/dishes'
+      preLoaderRoute: typeof AuthenticatedMenuDishesImport
+      parentRoute: typeof AuthenticatedImport
+    }
+    '/_authenticated/my-orders/': {
+      id: '/_authenticated/my-orders/'
+      path: '/my-orders'
+      fullPath: '/my-orders'
+      preLoaderRoute: typeof AuthenticatedMyOrdersIndexImport
       parentRoute: typeof AuthenticatedImport
     }
   }
@@ -93,15 +110,17 @@ declare module '@tanstack/react-router' {
 // Create and export the route tree
 
 interface AuthenticatedRouteChildren {
-  AuthenticatedAboutRoute: typeof AuthenticatedAboutRoute
-  AuthenticatedProductsRoute: typeof AuthenticatedProductsRoute
   AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
+  AuthenticatedMenuCategoriesRoute: typeof AuthenticatedMenuCategoriesRoute
+  AuthenticatedMenuDishesRoute: typeof AuthenticatedMenuDishesRoute
+  AuthenticatedMyOrdersIndexRoute: typeof AuthenticatedMyOrdersIndexRoute
 }
 
 const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
-  AuthenticatedAboutRoute: AuthenticatedAboutRoute,
-  AuthenticatedProductsRoute: AuthenticatedProductsRoute,
   AuthenticatedIndexRoute: AuthenticatedIndexRoute,
+  AuthenticatedMenuCategoriesRoute: AuthenticatedMenuCategoriesRoute,
+  AuthenticatedMenuDishesRoute: AuthenticatedMenuDishesRoute,
+  AuthenticatedMyOrdersIndexRoute: AuthenticatedMyOrdersIndexRoute,
 }
 
 const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
@@ -111,39 +130,49 @@ const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
 export interface FileRoutesByFullPath {
   '': typeof AuthenticatedRouteWithChildren
   '/login': typeof LoginRoute
-  '/about': typeof AuthenticatedAboutRoute
-  '/products': typeof AuthenticatedProductsRoute
   '/': typeof AuthenticatedIndexRoute
+  '/menu/categories': typeof AuthenticatedMenuCategoriesRoute
+  '/menu/dishes': typeof AuthenticatedMenuDishesRoute
+  '/my-orders': typeof AuthenticatedMyOrdersIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/login': typeof LoginRoute
-  '/about': typeof AuthenticatedAboutRoute
-  '/products': typeof AuthenticatedProductsRoute
   '/': typeof AuthenticatedIndexRoute
+  '/menu/categories': typeof AuthenticatedMenuCategoriesRoute
+  '/menu/dishes': typeof AuthenticatedMenuDishesRoute
+  '/my-orders': typeof AuthenticatedMyOrdersIndexRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/_authenticated': typeof AuthenticatedRouteWithChildren
   '/login': typeof LoginRoute
-  '/_authenticated/about': typeof AuthenticatedAboutRoute
-  '/_authenticated/products': typeof AuthenticatedProductsRoute
   '/_authenticated/': typeof AuthenticatedIndexRoute
+  '/_authenticated/menu/categories': typeof AuthenticatedMenuCategoriesRoute
+  '/_authenticated/menu/dishes': typeof AuthenticatedMenuDishesRoute
+  '/_authenticated/my-orders/': typeof AuthenticatedMyOrdersIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '' | '/login' | '/about' | '/products' | '/'
+  fullPaths:
+    | ''
+    | '/login'
+    | '/'
+    | '/menu/categories'
+    | '/menu/dishes'
+    | '/my-orders'
   fileRoutesByTo: FileRoutesByTo
-  to: '/login' | '/about' | '/products' | '/'
+  to: '/login' | '/' | '/menu/categories' | '/menu/dishes' | '/my-orders'
   id:
     | '__root__'
     | '/_authenticated'
     | '/login'
-    | '/_authenticated/about'
-    | '/_authenticated/products'
     | '/_authenticated/'
+    | '/_authenticated/menu/categories'
+    | '/_authenticated/menu/dishes'
+    | '/_authenticated/my-orders/'
   fileRoutesById: FileRoutesById
 }
 
@@ -174,24 +203,29 @@ export const routeTree = rootRoute
     "/_authenticated": {
       "filePath": "_authenticated.tsx",
       "children": [
-        "/_authenticated/about",
-        "/_authenticated/products",
-        "/_authenticated/"
+        "/_authenticated/",
+        "/_authenticated/menu/categories",
+        "/_authenticated/menu/dishes",
+        "/_authenticated/my-orders/"
       ]
     },
     "/login": {
       "filePath": "login.tsx"
     },
-    "/_authenticated/about": {
-      "filePath": "_authenticated/about.tsx",
-      "parent": "/_authenticated"
-    },
-    "/_authenticated/products": {
-      "filePath": "_authenticated/products.tsx",
-      "parent": "/_authenticated"
-    },
     "/_authenticated/": {
       "filePath": "_authenticated/index.tsx",
+      "parent": "/_authenticated"
+    },
+    "/_authenticated/menu/categories": {
+      "filePath": "_authenticated/menu/categories.tsx",
+      "parent": "/_authenticated"
+    },
+    "/_authenticated/menu/dishes": {
+      "filePath": "_authenticated/menu/dishes.tsx",
+      "parent": "/_authenticated"
+    },
+    "/_authenticated/my-orders/": {
+      "filePath": "_authenticated/my-orders/index.tsx",
       "parent": "/_authenticated"
     }
   }
