@@ -19,7 +19,7 @@ export const useSidebar = () => {
     },
     {
       key: SidebarRouteKey.Menu,
-      label: <Link to={SidebarRouteKey.Menu}>Menu</Link>,
+      label: 'Menu',
       icon: <Icon name="Utensils" size={20} />,
       children: [
         {

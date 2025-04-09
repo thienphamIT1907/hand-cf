@@ -197,6 +197,7 @@ export default [
       'generator-star-spacing': 'error',
       'import/newline-after-import': 'error',
       'import/no-mutable-exports': 'error',
+      // 'import/no-unresolved': 0,
       'import/no-named-as-default': 0,
       'max-lines': ['warn', 500],
       'max-params': ['warn', 5],

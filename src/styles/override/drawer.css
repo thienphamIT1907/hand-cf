@@ -1,0 +1,26 @@
+.ant-drawer-header {
+  border-bottom: none !important;
+}
+
+.ant-drawer-footer {
+  padding: 12px !important;
+}
+
+.ant-drawer-content-wrapper > .ant-drawer-content {
+  background: white;
+}
+
+.ant-drawer-header-title > .ant-drawer-title {
+  font-size: 20px;
+  font-weight: 500;
+  padding: 16px 4px;
+}
+
+.ant-drawer-header-title > .ant-drawer-close {
+  order: 1;
+  margin: 0;
+}
+
+.ant-drawer-body {
+  padding: 10px 28px !important;
+}

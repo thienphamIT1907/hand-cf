@@ -12,19 +12,18 @@ export const useToast = () => {
     NotificationContext,
   ) as NotificationInstance;
 
-  const renderIcon = (type: IconType) => {
+  const renderIcon = useCallback((type: IconType) => {
     switch (type) {
       case 'success':
-        return <Icon name="CircleCheck" />;
+        return <Icon name="CircleCheck" className="text-green-400" />;
       case 'warning':
         return <Icon name="CircleAlert" />;
       case 'error':
-        return <Icon name="CircleX" />;
-      case 'info':
+        return <Icon name="CircleX" className="text-red-400" />;
       default:
         return;
     }
-  };
+  }, []);
 
   const showToast = useCallback(
     ({
@@ -38,14 +37,15 @@ export const useToast = () => {
         message,
         description,
         placement: 'topRight',
-        duration: 2,
+        duration: 1.5,
         style: { width: `${450}px` },
+        className: 'flex justify-start items-center',
         ...rest,
       };
 
       notificationApi[type](options);
     },
-    [notificationApi],
+    [notificationApi, renderIcon],
   );
 
   const showErrorToast = useCallback(
@@ -67,7 +67,7 @@ export const useToast = () => {
 
       notificationApi[type](options);
     },
-    [notificationApi],
+    [notificationApi, renderIcon],
   );
 
   return { showToast, showErrorToast };
